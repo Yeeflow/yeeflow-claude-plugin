@@ -1,0 +1,13 @@
+{
+  "name": "yeeflow-claude",
+  "owner": {
+    "name": "Yeeflow"
+  },
+  "plugins": [
+    {
+      "name": "yeeflow",
+      "source": "./",
+      "description": "Build and maintain Yeeflow business applications with guided skills and hosted MCP."
+    }
+  ]
+}

@@ -1,7 +1,0 @@
-{
-  "AppID": "<app-id>",
-  "ReplaceIds": [
-    "<local-id-to-remap>"
-  ],
-  "Data": "{\"Item\":{\"Defs\":[],\"Layouts\":[]},\"Childs\":[],\"Forms\":[],\"OtherModules\":[]}"
-}

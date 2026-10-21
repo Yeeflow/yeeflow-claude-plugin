@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const zlib = require("zlib");
-const { validateWorkflowActionShapes } = require("./workflow-action-config-validator");
+const { validateWorkflowActionShapes } = require("./scripts/workflow-action-config-validator");
 const { validatePackageWrapperIcon } = require("./scripts/lib/application-icon-validation.cjs");
 const {
   isGeneratedValueControl,

@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { asArray, isObject, parseJsonMaybe, readDecodedYapk } from "./lib/yapk-decode-utils.mjs";
+import { asArray, isObject, parseJsonMaybe, readDecodedYapk } from "../../../scripts/lib/yapk-decode-utils.mjs";
 
 if (isMainModule()) {
   const args = parseArgs(process.argv.slice(2));

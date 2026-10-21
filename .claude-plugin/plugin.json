@@ -10,7 +10,7 @@
     "email": "support@yeeflow.com"
   },
   "homepage": "https://www.yeeflow.com",
-  "repository": "https://github.com/Yeeflow/app-builder-plugin",
+  "repository": "https://github.com/Yeeflow/yeeflow-claude-plugin",
   "icon": "./assets/yeeflow-logo-only-blue.png",
   "privacyPolicyUrl": "https://www.yeeflow.com/privacy",
   "keywords": [

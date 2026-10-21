@@ -1,4 +1,4 @@
-const {inspectNativeCollectionDensity} = require("./lib/collection-native-density.cjs");
+const {inspectNativeCollectionDensity} = require("../../../scripts/lib/collection-native-density.cjs");
 const { spawnSync } = require("child_process");
 const zlib = require("zlib");
 

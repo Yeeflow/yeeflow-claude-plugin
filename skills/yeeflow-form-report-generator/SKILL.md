@@ -5,6 +5,8 @@ description: generate, inspect, validate, and plan runtime proof for Yeeflow For
 
 ## Claude host requirements
 
+In the directory build, normalized study folders are bundled into one JSON file each. A reference such as `docs/studies/normalized/<topic>.bundle.json#<name>` means the value of `files["<name>"]` in that file; a reference to the bundle alone means all of its entries. Shared scripts live once under the plugin root; resolve `<plugin-root>/...` paths from the plugin root.
+
 If the Skill tool reports a virtual or missing base directory, do not assume bundled files are missing. When filesystem tools are available, locate .claude-plugin/plugin.json under the host-provided plugin mounts, verify its name is yeeflow and version matches this session, and resolve resources from that actual root. Do not use another installed version or another host cache. If multiple roots match, stop and report ambiguity.
 
 Resolve this plugin root from the loaded skill path (<plugin-root>/skills/<skill-name>/SKILL.md), or CLAUDE_PLUGIN_ROOT when provided. Read bundled resources with Claude's available file tools. Resolve shared docs, scripts and core from the plugin root, never from a developer checkout or another host's cache.
@@ -33,7 +35,7 @@ Schema-v2 carry-forward: Form Report child resources are list-like `CustomListMo
 
 Use this skill when a Yeeflow application needs Form Report resources or when studying/export-validating Form Report schema. A Form Report is an app-level reporting resource based on an approval form. It is not a standalone data list, does not own a workflow, and must not be treated as an editable record store.
 
-Current proof boundary: export-proven and validator-backed only from `docs/studies/form-report-resource.md` and normalized refs under `docs/studies/normalized/form-report/`. Do not claim runtime behavior until a focused import/open/designer/submission/export-back baseline passes.
+Current proof boundary: export-proven and validator-backed only from `docs/studies/collection-02.md#form-report-resource` and normalized refs under `docs/studies/normalized/form-report.bundle.json`. Do not claim runtime behavior until a focused import/open/designer/submission/export-back baseline passes.
 
 ## FormNewReports Workflow Report Standard
 
@@ -129,7 +131,7 @@ The export stores date/time format as codes. Do not claim exact UI labels such a
 Run:
 
 ```bash
-node scripts/inspect-form-reports.mjs <input.yap> --out-dir docs/studies/normalized/form-report
+node <plugin-root>/scripts/inspect-form-reports.mjs <input.yap> --out-dir docs/studies/normalized/form-report.bundle.json
 node validate-yap-package.js <input.yap> --mode compatibility
 node validate-yap-graph.js <input.yap> --mode compatibility
 ```
@@ -142,12 +144,12 @@ Stop and report if the export cannot be decoded, no source approval form resolve
 
 ## App Creation Rule Guardrails
 
-When generating a Form Report baseline that includes a source approval form, the source form must also satisfy app creation rules from `docs/studies/yeeflow-app-creation-rules.md`. Emit approval form `NoRule` as an object with `Prefix`, `StartIndex`, `CustomLength`, and `AutoIncrement`, and include `{index}` in `NoRule.Prefix`. Keep process keys alphanumeric/underscore only. Do not import a generated Form Report package when `validate-yap-package.js` or `scripts/inspect-app-creation-rules.mjs` reports generation-blocking app creation errors.
+When generating a Form Report baseline that includes a source approval form, the source form must also satisfy app creation rules from `docs/studies/collection-03.md#yeeflow-app-creation-rules`. Emit approval form `NoRule` as an object with `Prefix`, `StartIndex`, `CustomLength`, and `AutoIncrement`, and include `{index}` in `NoRule.Prefix`. Keep process keys alphanumeric/underscore only. Do not import a generated Form Report package when `validate-yap-package.js` or `scripts/inspect-app-creation-rules.mjs` reports generation-blocking app creation errors.
 
 <!-- data-list-document-library-fields-learning:start -->
 ## Data List And Document Library Field Type Learning
 
-Use `docs/studies/data-list-document-library-field-types.md`, `docs/studies/normalized/data-list-fields/`, and `scripts/inspect-data-list-fields.mjs` before generating or validating broad Data List custom fields. `Data Lists (2).yap` export-proves the target Type `1` data lists `Data list with fields part A` and `Data list with fields part B` with 90 custom fields across `input`, `textarea`, `richtext`, `hyperlink`, `input_number`, `currency`, `percent`, `calculated-column`, `rate`, `switch`, `checkbox`, `radio`, `tag`, `datepicker`, `time`, `identity-picker`, `organization-picker`, `cost-center-picker`, `signer`, `file-upload`, `icon-upload`, `lookup`, `metadata`, `mutiple-metadata`, `location-picker`, `autonumber`, and `list`. `select` and `flowstatus` remain product-rule-backed/unproven in this export.
+Use `docs/studies/collection-01.md#data-list-document-library-field-types`, `docs/studies/normalized/data-list-fields.bundle.json`, and `scripts/inspect-data-list-fields.mjs` before generating or validating broad Data List custom fields. `Data Lists (2).yap` export-proves the target Type `1` data lists `Data list with fields part A` and `Data list with fields part B` with 90 custom fields across `input`, `textarea`, `richtext`, `hyperlink`, `input_number`, `currency`, `percent`, `calculated-column`, `rate`, `switch`, `checkbox`, `radio`, `tag`, `datepicker`, `time`, `identity-picker`, `organization-picker`, `cost-center-picker`, `signer`, `file-upload`, `icon-upload`, `lookup`, `metadata`, `mutiple-metadata`, `location-picker`, `autonumber`, and `list`. `select` and `flowstatus` remain product-rule-backed/unproven in this export.
 
 Field generation must still pass the v0.5.12 app-creation gates: unique `DisplayName`, `FieldName`, and `InternalName`; `InternalName` matching `[A-Za-z0-9_]`; identifier length <= 255; and generated non-system `FieldName` suffix matching `FieldIndex`. Accept export-proven single metadata fields as `Type = "metadata"` with Bigint storage, even though the earlier product-team 28-type list only named `mutiple-metadata`.
 
@@ -159,7 +161,7 @@ Document Library custom-field applicability is product/user-understanding-backed
 <!-- data-list-custom-form-fields-learning:start -->
 ## Data List Custom Form Boundary
 
-Data List custom list forms from `docs/studies/data-list-custom-form-fields.md` are normal editable/list-entry surfaces for Type `1` data lists. Do not transfer those custom form layouts, temp variables, or form actions into Form Report generation. Form Reports remain read/reporting-oriented Type `32` resources generated from approval-form submissions and should not receive editable Data List custom forms or Data List form actions unless a future Form Report export proves a distinct supported shape.
+Data List custom list forms from `docs/studies/collection-01.md#data-list-custom-form-fields` are normal editable/list-entry surfaces for Type `1` data lists. Do not transfer those custom form layouts, temp variables, or form actions into Form Report generation. Form Reports remain read/reporting-oriented Type `32` resources generated from approval-form submissions and should not receive editable Data List custom forms or Data List form actions unless a future Form Report export proves a distinct supported shape.
 <!-- data-list-custom-form-fields-learning:end -->
 
 <!-- yap-schema-standard-learning:start -->

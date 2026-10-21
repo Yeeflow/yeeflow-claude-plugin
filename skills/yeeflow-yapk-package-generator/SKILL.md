@@ -5,6 +5,8 @@ description: Inspect, validate, compare, and plan Yeeflow .yapk existing-applica
 
 ## Claude host requirements
 
+In the directory build, normalized study folders are bundled into one JSON file each. A reference such as `docs/studies/normalized/<topic>.bundle.json#<name>` means the value of `files["<name>"]` in that file; a reference to the bundle alone means all of its entries. Shared scripts live once under the plugin root; resolve `<plugin-root>/...` paths from the plugin root.
+
 If the Skill tool reports a virtual or missing base directory, do not assume bundled files are missing. When filesystem tools are available, locate .claude-plugin/plugin.json under the host-provided plugin mounts, verify its name is yeeflow and version matches this session, and resolve resources from that actual root. Do not use another installed version or another host cache. If multiple roots match, stop and report ambiguity.
 
 Resolve this plugin root from the loaded skill path (<plugin-root>/skills/<skill-name>/SKILL.md), or CLAUDE_PLUGIN_ROOT when provided. Read bundled resources with Claude's available file tools. Resolve shared docs, scripts and core from the plugin root, never from a developer checkout or another host's cache.
@@ -84,7 +86,7 @@ Dashboard Page Layouts v1.1 Content padding must be preserved from the canonical
 
 After package install/import, use the decoded package root `ListSet.ListID` / wrapper `ListID` as the canonical runtime URL source when available. Do not use install response `Data.ID` as an application root unless the API explicitly names it as `ListSetID` or equivalent. Treat API status `0` as submission/acceptance only. If install returns status `540017`, classify it as already installed in tenant and switch to upgrade-check / upgrade-apply flow after resolving the existing installed app identity; do not keep retrying fresh install. Preserve sanitized server `Message` text in reports for non-zero API statuses.
 
-High-quality dashboard/UI upgrades must also satisfy `docs/standards/ui-summary-kpi-runtime-hard-gates.md`: page-by-page UI implementation contract, export-proven style shapes, Summary/KPI designer-shaped metadata, visible KPI runtime evidence or explicitly labeled fallback, runtime screenshot evidence before UI-quality claims, and Collection grid-table quality when planned. Dynamic visible KPI binding is proven only for the exact UUID Summary v1.0.1 shape with before/after mutation proof and refreshed/recalculated runtime evidence; other shapes remain unproven unless focused runtime proof exists.
+High-quality dashboard/UI upgrades must also satisfy `docs/standards/collection-02.md#ui-summary-kpi-runtime-hard-gates`: page-by-page UI implementation contract, export-proven style shapes, Summary/KPI designer-shaped metadata, visible KPI runtime evidence or explicitly labeled fallback, runtime screenshot evidence before UI-quality claims, and Collection grid-table quality when planned. Dynamic visible KPI binding is proven only for the exact UUID Summary v1.0.1 shape with before/after mutation proof and refreshed/recalculated runtime evidence; other shapes remain unproven unless focused runtime proof exists.
 
 ## Canonical Schema Files
 
@@ -98,7 +100,7 @@ If an approved app plan includes an approval workflow/form, do not ship `Forms: 
 
 Root navigation must use export-proven grouped shape `{ "Type": "classes", "list": [...] }`. Do not use local-only `children` or `Childs` navigation groups. Use `Type: 103` for dashboard/page entries, `Type: 105` with `ListID = Forms[].Key` for approval forms, and `Type: 1` with a valid child list ID for data lists. Every intended page/list/form must be visible in navigation or documented as hidden/deferred.
 
-For new generated app plans, require the standard app-plan structure from canonical `docs/standards/app-plan-standard-template.md` when present, or a user-approved lightweight quick outline that still includes Data Model and Lists, Forms and Approval Forms, Application Navigation, UI/UX and Control Mapping, Generation Contract and Hard Gates, Proof Boundary, and Assumptions/Deferred Items, before YAPK generation. Treat its output package, signing, approval-form, navigation, advanced capability, plan-to-package conformance, proof-boundary, and runtime inspection clauses as binding during content validation, signing, and handoff reporting. Advanced capability coverage includes planned data-list views, custom list forms/public forms, list workflows, scheduled workflows, notifications, AI Agents/Copilots/knowledge resources, custom code/custom CSS, Form Reports, document views/forms, and named golden/template references. Do not call these runtime-proven from wrapper validity, schema validity, signing, or API acceptance alone.
+For new generated app plans, require the standard app-plan structure from canonical `docs/standards/collection-01.md#app-plan-standard-template` when present, or a user-approved lightweight quick outline that still includes Data Model and Lists, Forms and Approval Forms, Application Navigation, UI/UX and Control Mapping, Generation Contract and Hard Gates, Proof Boundary, and Assumptions/Deferred Items, before YAPK generation. Treat its output package, signing, approval-form, navigation, advanced capability, plan-to-package conformance, proof-boundary, and runtime inspection clauses as binding during content validation, signing, and handoff reporting. Advanced capability coverage includes planned data-list views, custom list forms/public forms, list workflows, scheduled workflows, notifications, AI Agents/Copilots/knowledge resources, custom code/custom CSS, Form Reports, document views/forms, and named golden/template references. Do not call these runtime-proven from wrapper validity, schema validity, signing, or API acceptance alone.
 
 ## YAPK Schema v5 Standard Additions
 
@@ -154,7 +156,7 @@ KPI cards must not use static number Text controls. Use the Service Desk Pro Exe
 
 ## Packaged Generation Standards
 
-Apply the packaged standards in `docs/standards/` before generating or returning application packages. `data-list-generation-standard.md` requires native `Title`, no generated `Text0` primary field, runtime-visible choice options in Rules.choices, not Rules.Options, full default view display/query shapes, lookup relationships for related lists, dependency-ordered sample rows, and selected lookup display fields. `dashboard-summary-card-generation-standard.md` applies only to Dashboard pages and supported Data List custom forms because Summary controls are not available on approval forms or Data List public forms; do not generate Summary controls on unsupported surfaces. `account-health-smoke-issue-summary.md` records the first-generation smoke failures that must remain regression-tested. Run the matching validators and treat missing standards compliance as a generation failure, not a cosmetic warning.
+Apply the packaged standards in `docs/standards/` before generating or returning application packages. `docs/standards/collection-02.md#data-list-generation-standard` requires native `Title`, no generated `Text0` primary field, runtime-visible choice options in Rules.choices, not Rules.Options, full default view display/query shapes, lookup relationships for related lists, dependency-ordered sample rows, and selected lookup display fields. `docs/standards/collection-02.md#dashboard-summary-card-generation-standard` applies only to Dashboard pages and supported Data List custom forms because Summary controls are not available on approval forms or Data List public forms; do not generate Summary controls on unsupported surfaces. `docs/standards/collection-01.md#account-health-smoke-issue-summary` records the first-generation smoke failures that must remain regression-tested. Run the matching validators and treat missing standards compliance as a generation failure, not a cosmetic warning.
 
 ## YAPK-First Application Delivery Workflow
 
@@ -165,7 +167,7 @@ If package API automation is requested, use OAuth workspace discovery first and 
 
 ## Three-Column Workspace Runtime Layout Mechanics
 
-When using or validating `three_column_workspace_shell`, choose dashboard Style 2 from `docs/standards/three-column-workspace-layout-standard.md` and `docs/studies/three-column-dashboard-layout-runtime-css-study.md`. Style 1 dashboards keep the standard `Main > Content` wrapper. Style 2 three-column workspace dashboards do not: `three_column_workspace_shell` must be the root page body layout container, with dashboard content width set to Full Width and page padding set to 0. Do not wrap the shell in default `Main > Content` containers; runtime testing showed those default-height/default-position parents can make the shell render blank or incorrectly.
+When using or validating `three_column_workspace_shell`, choose dashboard Style 2 from `docs/standards/collection-02.md#three-column-workspace-layout-standard` and `docs/studies/collection-02.md#three-column-dashboard-layout-runtime-css-study`. Style 1 dashboards keep the standard `Main > Content` wrapper. Style 2 three-column workspace dashboards do not: `three_column_workspace_shell` must be the root page body layout container, with dashboard content width set to Full Width and page padding set to 0. Do not wrap the shell in default `Main > Content` containers; runtime testing showed those default-height/default-position parents can make the shell render blank or incorrectly.
 
 It is not enough to create three labeled sections. The page/form resource must contain one positioned row shell with three direct sibling panels, fixed-width left/right panels, fill-width main panel, full-height bounded panels, hidden outer panel overflow, scrollable body regions, sticky header/action regions, and meaningful bottom/support regions when present. Generated pages that stack the left, main, and right panels vertically, nest the shell under Style 1 wrappers, omit Full Width/zero page padding, or use layout-breaking icon widths must fail validation and must not claim this template. Icon controls inside the shell should use inline width behavior and intentionally bounded sizes for the panel/header context.
 
@@ -173,7 +175,7 @@ Before signing, install, upgrade, or handoff, run template conformance with the 
 
 ## Multi-Column Form Workspace Pattern
 
-Use `docs/standards/multi-column-form-workspace-standard.md` and template `multi_column_form_workspace_shell` when a service desk, help desk, CRM workbench, support console, review queue, renewal review, case-management console, or operational inbox needs form actions, variables, selected-record state, comments/updates, dynamic form fields, or action-driven filtering. This is an approval/form workspace pattern, not a dashboard reporting pattern.
+Use `docs/standards/collection-02.md#multi-column-form-workspace-standard` and template `multi_column_form_workspace_shell` when a service desk, help desk, CRM workbench, support console, review queue, renewal review, case-management console, or operational inbox needs form actions, variables, selected-record state, comments/updates, dynamic form fields, or action-driven filtering. This is an approval/form workspace pattern, not a dashboard reporting pattern.
 
 During planning, choose a dashboard when the page is primarily reporting or monitoring. Choose the form workspace when the app needs navigation containers that set filter variables, ticket/list collection items that set selected/current record state, detail panels bound to that selected state, comment/update controls, or expand/collapse icon actions. Do not add fake workflow routing just to use the form surface; if the workflow is only Start to End, document that the form is being used as a no-submit workspace shell.
 
@@ -299,7 +301,7 @@ When editing decoded `AppPackageInfo`, preserve 64-bit numeric IDs. Plain JavaSc
 
 Use these project references when present:
 
-- `docs/yeeflow-yapk-version-package-study.md`
+- `docs/collection-04.md#yeeflow-yapk-version-package-study`
 - `docs/studies/normalized/yapk-schema-standard/`
 - `yeeflow-yapk-schema-standard-summary.json`
 - `validate-yapk-package.js`

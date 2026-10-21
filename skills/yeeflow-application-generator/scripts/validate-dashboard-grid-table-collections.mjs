@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { asArray, isObject, parseJsonMaybe, readDecodedYapk, walk } from "./lib/yapk-decode-utils.mjs";
+import { asArray, isObject, parseJsonMaybe, readDecodedYapk, walk } from "../../../scripts/lib/yapk-decode-utils.mjs";
 
 const GRID_TABLE_TEMPLATE_IDS = new Set([
   "collection_control_grid_table",

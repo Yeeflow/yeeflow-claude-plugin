@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { isObject, readDecodedYapk } from "./lib/yapk-decode-utils.mjs";
+import { isObject, readDecodedYapk } from "../../../scripts/lib/yapk-decode-utils.mjs";
 
 const NUMERIC_RE = /^\d+$/;
 

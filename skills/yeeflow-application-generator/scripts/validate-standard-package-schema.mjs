@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const GZIP_PREFIX = "[______gizp______]";
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
-const { loadYapkSchemaEffective } = require("./lib/load-yapk-schema.js");
+const { loadYapkSchemaEffective } = require("../../../scripts/lib/load-yapk-schema.js");
 const DEFAULT_YAP_SCHEMA = resolveCanonicalSchemaPath("schemas/yap-schema.json");
 const DEFAULT_YAPK_SCHEMA = resolveCanonicalSchemaPath("schemas/yapk-schema.json");
 const LARGE_INTEGER_RE = /^-?\d{16,}$/;

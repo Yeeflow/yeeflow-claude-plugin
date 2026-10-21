@@ -5,6 +5,8 @@ description: Create, inspect, update, validate, and safely delete Yeeflow Data R
 
 ## Claude host requirements
 
+In the directory build, normalized study folders are bundled into one JSON file each. A reference such as `docs/studies/normalized/<topic>.bundle.json#<name>` means the value of `files["<name>"]` in that file; a reference to the bundle alone means all of its entries. Shared scripts live once under the plugin root; resolve `<plugin-root>/...` paths from the plugin root.
+
 If the Skill tool reports a virtual or missing base directory, do not assume bundled files are missing. When filesystem tools are available, locate .claude-plugin/plugin.json under the host-provided plugin mounts, verify its name is yeeflow and version matches this session, and resolve resources from that actual root. Do not use another installed version or another host cache. If multiple roots match, stop and report ambiguity.
 
 Resolve this plugin root from the loaded skill path (<plugin-root>/skills/<skill-name>/SKILL.md), or CLAUDE_PLUGIN_ROOT when provided. Read bundled resources with Claude's available file tools. Resolve shared docs, scripts and core from the plugin root, never from a developer checkout or another host's cache.

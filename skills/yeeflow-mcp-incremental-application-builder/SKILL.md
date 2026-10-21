@@ -5,6 +5,8 @@ description: Build, extend, inspect, and safely change Yeeflow applications incr
 
 ## Claude host requirements
 
+In the directory build, normalized study folders are bundled into one JSON file each. A reference such as `docs/studies/normalized/<topic>.bundle.json#<name>` means the value of `files["<name>"]` in that file; a reference to the bundle alone means all of its entries. Shared scripts live once under the plugin root; resolve `<plugin-root>/...` paths from the plugin root.
+
 If the Skill tool reports a virtual or missing base directory, do not assume bundled files are missing. When filesystem tools are available, locate .claude-plugin/plugin.json under the host-provided plugin mounts, verify its name is yeeflow and version matches this session, and resolve resources from that actual root. Do not use another installed version or another host cache. If multiple roots match, stop and report ambiguity.
 
 Resolve this plugin root from the loaded skill path (<plugin-root>/skills/<skill-name>/SKILL.md), or CLAUDE_PLUGIN_ROOT when provided. Read bundled resources with Claude's available file tools. Resolve shared docs, scripts and core from the plugin root, never from a developer checkout or another host's cache.
@@ -157,7 +159,7 @@ Report the ledger as a concise matrix: planned resource, live ID (redacted), ope
 
 ## Custom Code Dashboard Golden Reference
 
-`dashboard-page-layouts-custom-code` is a registered alternate page-level Dashboard template. Use `docs/standards/dashboard-page-layouts-custom-code-standard.md` and the matching page-layout registry entry. Prefer it for explicit primarily Custom Code requests; consider it for image-backed complex business pages. Preserve user intent in Functional Specification and explicitly select it in App Plan section 14 or the standalone Dashboard Plan. Require Custom Code Dashboard Composition, Custom Code Module Plan, and Custom Code Communication and Native Integration sections.
+`dashboard-page-layouts-custom-code` is a registered alternate page-level Dashboard template. Use `docs/standards/collection-01.md#dashboard-page-layouts-custom-code-standard` and the matching page-layout registry entry. Prefer it for explicit primarily Custom Code requests; consider it for image-backed complex business pages. Preserve user intent in Functional Specification and explicitly select it in App Plan section 14 or the standalone Dashboard Plan. Require Custom Code Dashboard Composition, Custom Code Module Plan, and Custom Code Communication and Native Integration sections.
 
 For this template, header/title/description/operations, top/bottom regions, side panels and internal Grids are optional. Duplicate full-width slots for vertically stacked modules. Desktop two-panel ratios are left + primary 1fr/2.5fr and primary + right 2.5fr/1fr; three-panel remains 1fr/2.5fr/1.5fr. Preserve explicit mobile right span 1 and accepted tablet left density. These template-specific rules take precedence over generic mandatory-header and native-dataset shell defaults. Do not inject an unplanned Collection or KPI.
 
@@ -166,7 +168,7 @@ Prefer functional Custom Code modules, declared temporary-variable output/input 
 
 ## Dataset caption card composition (1.15.4)
 
-Use `docs/standards/dashboard-dataset-composition-standard.md` and the shared `scripts/lib/dashboard-dataset-composition.mjs` normalizer/validator for Dashboard generation and incremental repairs. The registered `dataset-caption-v1` content-card variant omits `section_title_area` only for a single caption-bearing Collection/Kanban with no independent outer description or action; preserve `content_card_wrapper > section_content_area` and the complete dataset template. This conditional rule overrides generic mandatory outer-title guidance. Keep grouping titles for multiple datasets and outer titles for captionless controls. Remove unused empty `kpi_cards_kpi_row` and empty ancestor modules, never a bound dataset merely because it has no records. Preserve Search before Add and all responsive template slots, filter/action dependencies and record bindings. Run `scripts/test-dashboard-dataset-composition.mjs` and final Dashboard/standalone gates. Updating a plugin is not a live application repair or runtime visual proof.
+Use `docs/standards/collection-01.md#dashboard-dataset-composition-standard` and the shared `scripts/lib/dashboard-dataset-composition.mjs` normalizer/validator for Dashboard generation and incremental repairs. The registered `dataset-caption-v1` content-card variant omits `section_title_area` only for a single caption-bearing Collection/Kanban with no independent outer description or action; preserve `content_card_wrapper > section_content_area` and the complete dataset template. This conditional rule overrides generic mandatory outer-title guidance. Keep grouping titles for multiple datasets and outer titles for captionless controls. Remove unused empty `kpi_cards_kpi_row` and empty ancestor modules, never a bound dataset merely because it has no records. Preserve Search before Add and all responsive template slots, filter/action dependencies and record bindings. Run `scripts/test-dashboard-dataset-composition.mjs` and final Dashboard/standalone gates. Updating a plugin is not a live application repair or runtime visual proof.
 
 
 ## Direct Form Action Execution

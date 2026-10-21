@@ -2,7 +2,7 @@
 
 This template provides a responsive Dashboard shell for business pages whose content is primarily implemented with Custom Code controls. The native page header, containers, and Grid modules establish the page layout; each Custom Code control supplies a bounded business module inside that layout.
 
-**Status: registered; export-backed and locally validator-backed.** The active entry is in `docs/reference/dashboard-page-layout-templates.json`. Canonical integration rules are in `docs/standards/dashboard-page-layouts-custom-code-standard.md`. This directory retains the reviewed design and normalization evidence. Runtime behavior is not yet verified.
+**Status: registered; export-backed and locally validator-backed.** The active entry is in `docs/reference/dashboard-page-layout-templates.json`. Canonical integration rules are in `docs/standards/collection-01.md#dashboard-page-layouts-custom-code-standard`. This directory retains the reviewed design and normalization evidence. Runtime behavior is not yet verified.
 
 ## Identity and artifacts
 

@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { validateWorkflowActionShapes } = require("./workflow-action-config-validator");
+const { validateWorkflowActionShapes } = require("./scripts/workflow-action-config-validator");
 const {
   isGeneratedValueControl,
   loadControlFieldSchemas,

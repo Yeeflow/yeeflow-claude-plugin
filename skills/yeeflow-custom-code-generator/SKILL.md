@@ -5,6 +5,8 @@ description: generate, update, debug, document, and redesign yeeflow custom code
 
 ## Claude host requirements
 
+In the directory build, normalized study folders are bundled into one JSON file each. A reference such as `docs/studies/normalized/<topic>.bundle.json#<name>` means the value of `files["<name>"]` in that file; a reference to the bundle alone means all of its entries. Shared scripts live once under the plugin root; resolve `<plugin-root>/...` paths from the plugin root.
+
 If the Skill tool reports a virtual or missing base directory, do not assume bundled files are missing. When filesystem tools are available, locate .claude-plugin/plugin.json under the host-provided plugin mounts, verify its name is yeeflow and version matches this session, and resolve resources from that actual root. Do not use another installed version or another host cache. If multiple roots match, stop and report ambiguity.
 
 Resolve this plugin root from the loaded skill path (<plugin-root>/skills/<skill-name>/SKILL.md), or CLAUDE_PLUGIN_ROOT when provided. Read bundled resources with Claude's available file tools. Resolve shared docs, scripts and core from the plugin root, never from a developer checkout or another host's cache.
@@ -33,7 +35,7 @@ Generate Yeeflow custom code and customer-facing documentation that match the ru
 
 When participating in full application planning or generation, Custom code is an advanced capability that must be named in the standard app plan under `Custom Code and Custom Service Planning`. The plan should state why standard Yeeflow controls, expressions, workflow actions, form actions, Summary/Data Analytics, data-list operations, and custom CSS are insufficient; which custom-code surface is used; where the Custom Code control or Form Action Custom Code step is hosted; required parameters; fields/variables/temp variables read; writable outputs; security/privacy notes; maintenance owner; native fallback; and runtime proof requirements. Do not add Custom code as an unplanned shortcut during package generation.
 
-Use `../../docs/standards/custom-capability-app-plan-planning-standard.md` when deciding whether a business requirement should be handled by native Yeeflow capability, Custom Code control, Form Action Custom Code step, or Custom Service. If no Custom Code is needed, the App Plan should say `Not planned` and no custom-code control, action step, resource, navigation entry, variable, or placeholder artifact may be materialized from that row.
+Use `../../docs/standards/collection-01.md#custom-capability-app-plan-planning-standard` when deciding whether a business requirement should be handled by native Yeeflow capability, Custom Code control, Form Action Custom Code step, or Custom Service. If no Custom Code is needed, the App Plan should say `Not planned` and no custom-code control, action step, resource, navigation entry, variable, or placeholder artifact may be materialized from that row.
 
 Always classify the target surface before writing code:
 
@@ -224,8 +226,8 @@ Yeeflow custom code may run on an older React/runtime/compiler than a normal loc
 
 ## References
 
-- `references/yeeflow-custom-code-standard.md`
-- `../../docs/standards/custom-code-form-action-step-runtime-standard.md`
+- `references/collection-01.md#yeeflow-custom-code-standard`
+- `../../docs/standards/collection-01.md#custom-code-form-action-step-runtime-standard`
 
 ## Yeeflow list query rules
 
@@ -407,8 +409,8 @@ Dashboard guidance:
 
 ## UI and design rule
 For any Yeeflow UI, dashboard, form, table, portal, or editor task:
-- read `references/yeeflow-uiux-guidelines.md`
-- read `references/yeeflow-product-ui-checklist.md`
+- read `references/collection-01.md#yeeflow-uiux-guidelines`
+- read `references/collection-01.md#yeeflow-product-ui-checklist`
 - apply the Yeeflow design principles there
 
 Keep output:
@@ -429,14 +431,14 @@ Avoid:
 
 ## References
 
-- Yeeflow custom code structure: `references/yeeflow-custom-code-standard.md`
-- Yeeflow data and dashboard patterns: `references/yeeflow-data-and-dashboard-patterns.md`
-- Yeeflow parameter and save target rules: `references/yeeflow-parameter-and-save-target-rules.md`
+- Yeeflow custom code structure: `references/collection-01.md#yeeflow-custom-code-standard`
+- Yeeflow data and dashboard patterns: `references/collection-01.md#yeeflow-data-and-dashboard-patterns`
+- Yeeflow parameter and save target rules: `references/collection-01.md#yeeflow-parameter-and-save-target-rules`
 - Attachment upload and Approval AI-recognition controls: `references/attachment-and-ai-recognition-golden-reference.md`. Read this for Attachment metadata, direct SDK upload/content retrieval, upload UX, writable Approval-variable targets, Form Action button orchestration, DefResource placement, or the verification ladder. Use the focused compilable examples under `examples/` as patterns, not as proof of tenant runtime behavior.
-- Yeeflow code-to-guide rules: `references/yeeflow-code-to-guide-rules.md`
-- Yeeflow UI/UX guidelines: `references/yeeflow-uiux-guidelines.md`
-- Yeeflow product UI checklist: `references/yeeflow-product-ui-checklist.md`
-- Output mode guidance: `references/output-modes.md`
+- Yeeflow code-to-guide rules: `references/collection-01.md#yeeflow-code-to-guide-rules`
+- Yeeflow UI/UX guidelines: `references/collection-01.md#yeeflow-uiux-guidelines`
+- Yeeflow product UI checklist: `references/collection-01.md#yeeflow-product-ui-checklist`
+- Output mode guidance: `references/collection-01.md#output-modes`
 
 ## Practical examples
 
@@ -501,16 +503,16 @@ For the v1.4 Dashboard Query Data temp-JSON pattern, prefer standard controls an
 
 ## Custom Code Dashboard Golden Reference
 
-`dashboard-page-layouts-custom-code` is a registered alternate page-level Dashboard template. Use `docs/standards/dashboard-page-layouts-custom-code-standard.md` and the matching page-layout registry entry. Prefer it for explicit primarily Custom Code requests; consider it for image-backed complex business pages. Preserve user intent in Functional Specification and explicitly select it in App Plan section 14 or the standalone Dashboard Plan. Require Custom Code Dashboard Composition, Custom Code Module Plan, and Custom Code Communication and Native Integration sections.
+`dashboard-page-layouts-custom-code` is a registered alternate page-level Dashboard template. Use `docs/standards/collection-01.md#dashboard-page-layouts-custom-code-standard` and the matching page-layout registry entry. Prefer it for explicit primarily Custom Code requests; consider it for image-backed complex business pages. Preserve user intent in Functional Specification and explicitly select it in App Plan section 14 or the standalone Dashboard Plan. Require Custom Code Dashboard Composition, Custom Code Module Plan, and Custom Code Communication and Native Integration sections.
 
 For this template, header/title/description/operations, top/bottom regions, side panels and internal Grids are optional. Duplicate full-width slots for vertically stacked modules. Desktop two-panel ratios are left + primary 1fr/2.5fr and primary + right 2.5fr/1fr; three-panel remains 1fr/2.5fr/1.5fr. Preserve explicit mobile right span 1 and accepted tablet left density. These template-specific rules take precedence over generic mandatory-header and native-dataset shell defaults. Do not inject an unplanned Collection or KPI.
 
-Prefer functional Custom Code modules, declared temporary-variable output/input exchange, native Data Filters passed through filter-variable inputs, and direct Form Action execution on supported hosts (see `references/direct-form-action-execution.md`); retain unique CSS-ID button triggers only for verified legacy compatibility. Preserve action access when removing a visible header. Bind and verify context before invoking actions. Empty placeholders are allowed only in the reference. Use the shared page body builder and concrete module/dependency build context; preserve standalone Core provenance and wrapper gates. Training proof is export-backed and locally validated; rendering, reactive data and actions remain runtime-proof-required.
+Prefer functional Custom Code modules, declared temporary-variable output/input exchange, native Data Filters passed through filter-variable inputs, and direct Form Action execution on supported hosts (see `references/collection-01.md#direct-form-action-execution`); retain unique CSS-ID button triggers only for verified legacy compatibility. Preserve action access when removing a visible header. Bind and verify context before invoking actions. Empty placeholders are allowed only in the reference. Use the shared page body builder and concrete module/dependency build context; preserve standalone Core provenance and wrapper gates. Training proof is export-backed and locally validated; rendering, reactive data and actions remain runtime-proof-required.
 
 
 ## Direct Form Action Execution
 
-For Custom Code button clicks, guarded value changes, and custom collection row interactions, read the bundled Custom Code Generator reference `references/direct-form-action-execution.md` (resolve it from that skill's directory). Prefer the product-provided `CodeInContext.executeAction(action)` API on hosts exposing it. Generate the native action definition and declared variable bindings together; use real action IDs or unique names, serialize shared row context, await execution, and preserve readonly/confirmation and error handling. No arbitrary argument payload or business result is supported. Do not assume a custom row click establishes native Collection context or that a void variable setter has propagated. Replace hidden-button/CSS-ID triggering only where direct host support is confirmed. Validate real host behavior separately from offline helper tests.
+For Custom Code button clicks, guarded value changes, and custom collection row interactions, read the bundled Custom Code Generator reference `references/collection-01.md#direct-form-action-execution` (resolve it from that skill's directory). Prefer the product-provided `CodeInContext.executeAction(action)` API on hosts exposing it. Generate the native action definition and declared variable bindings together; use real action IDs or unique names, serialize shared row context, await execution, and preserve readonly/confirmation and error handling. No arbitrary argument payload or business result is supported. Do not assume a custom row click establishes native Collection context or that a void variable setter has propagated. Replace hidden-button/CSS-ID triggering only where direct host support is confirmed. Validate real host behavior separately from offline helper tests.
 
 <!-- plugin-resource-access -->
 ## Portable access to bundled resources

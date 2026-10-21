@@ -11,7 +11,7 @@ const {
 
 const OUTER_KEYS = ["Def", "Description", "FlowKey", "FlowName", "Icon", "Img", "Settings", "WorkflowType"];
 const REQUIRED_SETTING_KEYS = ["TimeZone", "Times", "StartDate", "EndDate", "Frequency", "Interval"];
-const { validateWorkflowActionShapes } = require("./workflow-action-config-validator.js");
+const { validateWorkflowActionShapes } = require("./scripts/workflow-action-config-validator.js");
 
 function issue(level, code, message, context = null) { return { level, code, message, context }; }
 

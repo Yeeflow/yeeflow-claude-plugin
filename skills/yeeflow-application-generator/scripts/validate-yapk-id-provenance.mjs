@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { isObject, readDecodedYapk, walk } from "./lib/yapk-decode-utils.mjs";
+import { isObject, readDecodedYapk, walk } from "../../../scripts/lib/yapk-decode-utils.mjs";
 
 const NUMERIC_RE = /^\d+$/;
 const ID_KEY_RE = /(^|\.)(ID|Id|Key|PackageId|TenantID|ListID|LayoutID|FieldID|RefId|DefResourceID|DeployedDefID|FormKey|FlowKey)$/;

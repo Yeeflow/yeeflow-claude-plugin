@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { asArray, isObject, readDecodedYapk } from "./lib/yapk-decode-utils.mjs";
+import { asArray, isObject, readDecodedYapk } from "../../../scripts/lib/yapk-decode-utils.mjs";
 
 const MAX_UPLOAD_BYTES = 2147483648;
 const FIELD_CONTRACTS = Object.freeze([

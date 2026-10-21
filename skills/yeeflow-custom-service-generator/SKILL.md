@@ -5,6 +5,8 @@ description: generate, inspect, validate, document, and debug Yeeflow Custom Ser
 
 ## Claude host requirements
 
+In the directory build, normalized study folders are bundled into one JSON file each. A reference such as `docs/studies/normalized/<topic>.bundle.json#<name>` means the value of `files["<name>"]` in that file; a reference to the bundle alone means all of its entries. Shared scripts live once under the plugin root; resolve `<plugin-root>/...` paths from the plugin root.
+
 If the Skill tool reports a virtual or missing base directory, do not assume bundled files are missing. When filesystem tools are available, locate .claude-plugin/plugin.json under the host-provided plugin mounts, verify its name is yeeflow and version matches this session, and resolve resources from that actual root. Do not use another installed version or another host cache. If multiple roots match, stop and report ambiguity.
 
 Resolve this plugin root from the loaded skill path (<plugin-root>/skills/<skill-name>/SKILL.md), or CLAUDE_PLUGIN_ROOT when provided. Read bundled resources with Claude's available file tools. Resolve shared docs, scripts and core from the plugin root, never from a developer checkout or another host's cache.
@@ -37,7 +39,7 @@ Use this skill for Custom Service generation and `.ycs` study. Use `yeeflow-cust
 
 Before generating or validating Custom Service code, read:
 
-- `../../docs/standards/custom-service-nodejs22-runtime-standard.md`
+- `../../docs/standards/collection-01.md#custom-service-nodejs22-runtime-standard`
 - `../../docs/reference/custom-service-ycs-examples.normalized.json`
 - `../../docs/reference/custom-service-invocation-examples.normalized.json`
 
@@ -47,7 +49,7 @@ For feature-learning or plugin-training work, also read:
 
 For full application planning or generation work, also read:
 
-- `../../docs/standards/custom-capability-app-plan-planning-standard.md`
+- `../../docs/standards/collection-01.md#custom-capability-app-plan-planning-standard`
 
 Custom Service is an advanced capability and must be planned in the standard App Plan under `Custom Code and Custom Service Planning` before generation. The App Plan must explain why native Yeeflow controls, expressions, form actions, workflow actions, Summary/Data Analytics, data-list operations, or Custom Code are insufficient; which service is needed; where it is invoked; the required connection variables, input variables, output variables, host bindings, queue/waiting UX, downstream actions, security/privacy notes, native fallback, and runtime proof. Do not add Custom Service or `invokeservice` / `InvokeCode` invocation steps as unplanned shortcuts during package generation.
 
