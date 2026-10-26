@@ -19,5 +19,8 @@
     "workflow"
   ],
   "skills": "./skills/",
-  "mcpServers": "./.mcp.json"
+  "mcpServers": "./.mcp.json",
+  "documentationUrl": "https://support.yeeflow.com/en/articles/16391707-connect-yeeflow-mcp-servers-to-your-ai-tool",
+  "supportUrl": "https://support.yeeflow.com/en/",
+  "termsOfServiceUrl": "https://www.yeeflow.com/terms"
 }

@@ -3,6 +3,7 @@
   "owner": {
     "name": "Yeeflow"
   },
+  "description": "Yeeflow plugin for Claude: guided skills for Yeeflow business applications, workflows and AI agents with the hosted Yeeflow MCP connection.",
   "plugins": [
     {
       "name": "yeeflow",
